@@ -15,9 +15,10 @@ public class Main {
 
 
         boolean bool = false;
-        while (!bool) {
+
+    outer: while (!bool) {
             bool=true;
-            System.out.println("Введите пользователя");
+            System.out.println("Введите пользователя: Admin, Главврач, Терапевт, Хирург, Стоматолог или Пациент");
             String user = in.nextLine();
 
             switch (user) {
@@ -37,21 +38,25 @@ public class Main {
                     System.out.println("Вы вошли как хирург");
 
                     break;
-                case "Нарколог":
-                    System.out.println("Вы вошли как нарколог");
+                case "Стоматолог":
+                    System.out.println("Вы вошли как стоматолог");
 
-                    break;
+                    break outer;
                 case "Пациент":
                     Pacient pacient = new Pacient();
                     String username = pacient.getUsername();
                     Doctor doc=Admin.doctorChoise();
                     pacient.regist(username,doc);
 
+                    System.out.println("Для выхода введите Exit");
+                    if (in.nextLine() == "Exit"){
+                        break outer;
+                    }
 
-                    break;
+   //                 break;
 
                 default:
-                    System.out.println("Вы не вошли в систему, попробуйте еще раз");
+                    System.out.println("Вы не вошли в систему");
                     bool=false;
 
             }
