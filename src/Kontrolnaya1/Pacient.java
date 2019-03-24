@@ -1,33 +1,28 @@
 package Kontrolnaya1;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Pacient {
-    private String login;
+    public String username;
+    Scanner in = new Scanner(System.in);
 
-    public Pacient(String login) {
-        this.login = login;
+    public Pacient() {
+        System.out.println("Введите Ваше имя пользователя");
+        String username = in.nextLine();
+        this.username = username;
+        Admin.login(this.username);
+//        System.out.println(Arrays.toString(Bolnica.spisokPacientov));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Pacient)) return false;
-        Pacient pacient = (Pacient) o;
-        return Objects.equals(login, pacient.login);
+    public void regist (String username, Doctor doc) {
+        Admin.registratura(username, doc);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(login);
-    }
-
-
-
-
-
-
+    public String getUsername() {
+        return username;
     }
 
 }
