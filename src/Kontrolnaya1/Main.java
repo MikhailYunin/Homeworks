@@ -41,7 +41,15 @@ public class Main {
                 case "Стоматолог":
                     System.out.println("Вы вошли как стоматолог");
 
-                    break outer;
+                    System.out.println("для простмотра записей введите требуемый месяц");
+                    int month = in.nextInt();
+                    System.out.println("введите день месяца");
+                    int day = in.nextInt();
+
+                    System.out.println("");
+                    dantist.prosmotrZapisei(dantist,month,day);
+
+                    break;
                 case "Пациент":
                     Pacient pacient = new Pacient();
                     String username = pacient.getUsername();
