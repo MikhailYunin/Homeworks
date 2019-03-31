@@ -71,8 +71,6 @@ public class Message {
 
 
 
-
-
     public static void countEachPriority(List<Message> messageList) {
         // Подсчитать количество сообщений для каждого приоритела
         // Ответ в консоль
@@ -106,26 +104,6 @@ public class Message {
         for (int i = 0; i < codeCount.length; i++) {
             System.out.println(i + ": " + codeCount[i]);}
 
-
-//        ArrayList<Message> messageArrayList = new ArrayList<Message>();
-//        for (int i = 0; i<messageList.size(); i++){
-//            messageArrayList.add(messageList.get(i));
-//
-
-
-//        HashSet<Integer> distinctCodeSet = new HashSet<Integer>();
-//        HashMap<Integer, Integer> codeCount = new HashMap<Integer, Integer>();
-//
-//        for (int i = 0; i<messageList.size(); i++){
-//            if (distinctCodeSet.add(messageList.get(i).code)) {
-//                codeCount.putIfAbsent(messageList.get(i).code, 1);
-//                System.out.println(codeCount.get(i));
-//            }
-//            //else codeCount.put(messageList.get(i).code, codeCount.get(i)+1);
-//        System.out.println(codeCount.toString());
-//        }
-
-
     }
 
     private static void uniqueMessageCount(List<Message> messageList) {
@@ -135,7 +113,6 @@ public class Message {
         for(Message message: messageList){
             uniqueMessage.add(message);
         }
-
         System.out.println("\nКоличество уникальных сообщений - "+uniqueMessage.size());
     }
 
@@ -182,9 +159,7 @@ public class Message {
             }
         }
         System.out.println("Список сообщений с приоритетом " +priority+"\n"+messageList);
-
     }
-
 }
 
 class MessageGenerator {
