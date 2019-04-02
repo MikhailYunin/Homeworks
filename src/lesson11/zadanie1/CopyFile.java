@@ -9,7 +9,7 @@ import java.nio.charset.Charset;
 
 public class CopyFile {
 
-    //new FileInputStream("C:\\Users\\username\\Desktop\\testFile.txt"
+
     public static void main(String[] args) {
 
 
@@ -21,29 +21,24 @@ public class CopyFile {
 
     }
 
-    public static void copyFile (InputStream input, OutputStream output, Charset charset) throws IOException {
+    public static void copyFile(InputStream input, OutputStream output, Charset charset) throws IOException {
         try (
                 InputStreamReader inputStreamReader = new InputStreamReader(input);
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(output)
-            //FileInputStream fileInputStream = new FileInputStream(oldFile);
-            //FileOutputStream fileOutputStream = new FileOutputStream(newFile);
-            //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
-        )
-        {
+        ) {
             //File newFile = new File("copyFile")
             StringBuilder sb = new StringBuilder();
-            char [] buf= new char[3];
+            char[] buf = new char[3];
             int len;
-            while ((len = inputStreamReader.read(buf))>0){
-                sb.append(buf,0,len);
+            while ((len = inputStreamReader.read(buf)) > 0) {
+                sb.append(buf, 0, len);
 
             }
             System.out.println(sb.toString());
             outputStreamWriter.write(sb.toString());
 
         }
-
 
 
     }

@@ -9,16 +9,14 @@ public class cropFile {
 
     public static void main(String[] args) {
 
-// разрезать файл
-      /*  try {
+
+        try {
             toCrop(new FileInputStream("src/lesson11/zadanie2/oldfile.txt"),
                     new FileOutputStream("src/lesson11/zadanie2/newfile1.txt"),
-                    new FileOutputStream("src/lesson11/zadanie2/newfile2.txt"),20);
+                    new FileOutputStream("src/lesson11/zadanie2/newfile2.txt"), 20);
         } catch (IOException e) {
             e.printStackTrace();
         }
-*/
-
 
 
         File[] files = {
@@ -27,16 +25,13 @@ public class cropFile {
         };
 
         try {
-            pasteTogether(files,new FileOutputStream("src/lesson11/zadanie2/pasteTogether.txt"),Charset.forName("UTF-8"));
+            pasteTogether(files, new FileOutputStream("src/lesson11/zadanie2/pasteTogether.txt"), Charset.forName("UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
     }
-
-
-
 
 
     public static void toCrop(InputStream input, OutputStream output1, OutputStream output2, int crop) throws IOException {
@@ -55,14 +50,14 @@ public class cropFile {
             }
 
             String string1 = sb.toString();
-            sb.delete(0,sb.length());//очистка
+            sb.delete(0, sb.length());//очистка
 
             for (int i = 0; i < crop; i++) {
                 sb.append(string1.charAt(i));
             }
             outputStreamWriter1.write(sb.toString());
 
-            sb.delete(0,sb.length());//очистка
+            sb.delete(0, sb.length());//очистка
 
             for (int i = crop; i < string1.length(); i++) {
                 sb.append(string1.charAt(i));
@@ -73,13 +68,12 @@ public class cropFile {
     }
 
 
-    public static void pasteTogether (File[] files,OutputStream output, Charset charset) throws IOException {
+    public static void pasteTogether(File[] files, OutputStream output, Charset charset) throws IOException {
         try (
                 InputStream inputStream1 = new FileInputStream(files[0]);
                 InputStream inputStream2 = new FileInputStream(files[1]);
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(output);
                 ByteArrayOutputStream bout = new ByteArrayOutputStream()
-
 
 
         ) {
@@ -94,7 +88,7 @@ public class cropFile {
             }
 
 
-            outputStreamWriter.write(new String(bout.toByteArray(),charset));
+            outputStreamWriter.write(new String(bout.toByteArray(), charset));
 
         }
     }
