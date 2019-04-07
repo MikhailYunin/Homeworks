@@ -17,8 +17,6 @@ public class ClassWork5 {
         classWork5.input(10);
         classWork5.printList(classWork5.list);
         classWork5.compare();
-
-
     }
 
     private ArrayList<String> input(int qty){
