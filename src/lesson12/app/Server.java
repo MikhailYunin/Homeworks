@@ -36,6 +36,7 @@ public class Server {
                 connection = new Connection(socket);
                 printMessage(connection.readMessage());
                 String user = connection.getUser(connection.readMessage());
+                System.out.println("считали объекь");
                 writeToFile("src/lesson12/app/userList.txt", true, Charset.forName("UTF-8"), user);
                 String command = connection.getCommand();
                 switch (command){
