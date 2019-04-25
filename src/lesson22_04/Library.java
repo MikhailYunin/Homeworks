@@ -2,19 +2,28 @@ package lesson22_04;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Library {
     public static void main(String[] args) {
         // библиотека не доделана
+
+        int countOfReader = 15; // число читателей
         Random random = new Random();
-        ArrayList<String> booklist = new ArrayList<>();
+        CopyOnWriteArrayList<String> booklist =  new CopyOnWriteArrayList<>();
         for (int i = 1; i < 10; i++) {
             booklist.add("Book " + i);
         }
 
-        for (int i = 1; i < 15; i++) {
-            int book = random.nextInt(10 + 1);//случайная книга
-            new ReaderThread("Book " + book, booklist, i+100).start();
+        ExecutorService fixedPool = Executors.newFixedThreadPool(5);
+        for (int i = 1; i < countOfReader; i++) {
+            int numBook = (random.nextInt(8)) + 1;//случайный номер книги
+            String bookRequest = "Book " + numBook; // случайное название книги
+            int numReader = i+100; // номер читательского билета
+
+            fixedPool.execute(new ReaderThread(bookRequest, booklist, numReader));
 
         }
 
@@ -25,7 +34,7 @@ public class Library {
 class ReaderThread extends Thread {
 
     String bookRequest; //запрашиваемая книга
-    ArrayList<String> booklist; //библиотека
+    CopyOnWriteArrayList<String> booklist; //библиотека
     int num; // номер читательского билета
 
 
@@ -34,7 +43,7 @@ class ReaderThread extends Thread {
     int diff = max - min;
     Random random = new Random();
 
-    public ReaderThread(String bookRequest, ArrayList<String> booklist, int num) {
+    public ReaderThread(String bookRequest, CopyOnWriteArrayList<String> booklist, int num) {
         this.bookRequest = bookRequest;
         this.booklist = booklist;
         this.num = num;
